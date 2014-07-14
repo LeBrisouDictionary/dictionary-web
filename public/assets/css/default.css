@@ -1,0 +1,25 @@
+th .entry ,td .entry {
+	width: 20%;
+}
+
+.top20 {
+	margin-top: 20px;
+}
+
+.form-inline .form-control {
+	width: 44%;
+	margin-top: 10px;
+	margin-right: 1%;
+}
+
+th .delete, td .delete {
+	width: 10%;
+}
+
+.add-def-ex {
+	margin-left: 20px;
+}
+
+table tbody {
+	margin-top: 0px;
+}
