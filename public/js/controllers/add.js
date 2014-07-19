@@ -8,7 +8,11 @@ angular.module('LeBrisouBackend.controllers', ['LeBrisouBackend.config'])
   	}
 
   	$scope.query = function(){
-  		$http.get(apiUrl + '/words').
+      var url = apiUrl + '/words';
+      if($scope.limit){
+        url += '?limit='+$scope.limit
+      }
+  		$http.get(url).
       success(function(data) {
         if(data && data.result){
           $scope.entries = data.result;

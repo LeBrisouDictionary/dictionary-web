@@ -41,8 +41,8 @@
       <form>
         <div class="col-lg-6">
           <div class="input-group">
-            <input name="limit" placeholder="Number of results" class="form-control">
-            <span class="input-group-btn"><button ng-click="query()" type="submit" class="btn btn-default">View</button></span>
+            <input ng-model="limit" placeholder="Number of results" class="form-control">
+            <span class="input-group-btn"><button ng-click="query(limit)" type="submit" class="btn btn-default">View</button></span>
           </div>
         </div>
       </form>

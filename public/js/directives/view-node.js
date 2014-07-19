@@ -19,19 +19,62 @@ angular.module('LeBrisouBackend.directives', [])
         .attr('class', 'entry')
         .text(function(entry){ return entry; });
 
-      return table
+      return tbody
 		}
+
+		internals.addRow = function (attach) {
+			console.log(attach);
+			attach.each(function(entry){
+				var colnames,
+						tds,
+						table = d3.select(this);
+
+				colnames = entry                                            // array of objects
+	        .reduce(function(p,c) { return p.concat(d3.keys(c)); }, [])  // array with all keynames
+	        .reduce(function(p,c) { return (p.set(c,0), p); }, d3.map()) // map with unique keynames as keys
+	        .keys();
+
+
+	      table.append("thead").append("tr").selectAll("th")
+		        .data(colnames)
+		      .enter().append("th")
+		        .text(function(d) { return d; });  
+
+				tds = table.append('tbody').selectAll('tr')
+					.data(entry)
+					.enter().append('tr').selectAll('td')
+						.data(function(e){
+							return colnames.map(function(k){
+								return e[k] || "";
+							});
+						})
+					.enter().append('td');
+
+
+					tds.filter(function(d) { return !(d instanceof Array);})
+	        		.text(function(d) { return d; });
+			    
+			    tds.filter(function(d) { return (d instanceof Array); })
+			        .append("table")
+			        .call(internals.addRow);
+		});
+	}
 
 
 		return {			
 			restrict: 'A',
 			link: function(scope, element, attrs){
-        
-        var table = internals.table(element[0])
-       	
+	      console.log(scope.entries);
 
-
-
+        d3.select(element[0])
+						.append('table').selectAll('table')
+						.attr(
+							'class', 
+							'cl-lg-6 table table-responsive table-bordered table-hover top20')
+        		.data([scope.entries])
+        	.enter().append('table')
+	        	.call(internals.addRow);
+        	
         element.removeAttr("view-node");
       	$compile(element)(scope);
 	        
