@@ -23,11 +23,15 @@ angular.module('LeBrisouBackend.directives', [])
 		}
 
 		internals.addRow = function (attach) {
-			console.log(attach);
+		
 			attach.each(function(entry){
 				var colnames,
 						tds,
 						table = d3.select(this);
+
+				if(entry instanceof Object){
+					entry = [entry]
+				}
 
 				colnames = entry                                            // array of objects
 	        .reduce(function(p,c) { return p.concat(d3.keys(c)); }, [])  // array with all keynames
@@ -37,26 +41,32 @@ angular.module('LeBrisouBackend.directives', [])
 
 	      table.append("thead").append("tr").selectAll("th")
 		        .data(colnames)
-		      .enter().append("th")
+		      .enter().append("th").attr('class', 'entry' )
 		        .text(function(d) { return d; });  
 
 				tds = table.append('tbody').selectAll('tr')
 					.data(entry)
-					.enter().append('tr').selectAll('td')
+					.enter().append('tr').selectAll('td').attr('class', 'entry' )
 						.data(function(e){
 							return colnames.map(function(k){
 								return e[k] || "";
 							});
 						})
-					.enter().append('td');
+					.enter().append('td').attr('class', 'entry' );
 
 
-					tds.filter(function(d) { return !(d instanceof Array);})
-	        		.text(function(d) { return d; });
+					tds.filter(function(d) { 
+						return (!(d instanceof Array) && !(d instanceof Object));
+					})
+	        	.text(function(d) { return d; });
 			    
-			    tds.filter(function(d) { return (d instanceof Array); })
-			        .append("table")
-			        .call(internals.addRow);
+			    tds.filter(function(d) { 
+
+			    	return ((d instanceof Array) || (d instanceof Object)); 
+			    })
+		        .append("table")
+		        .attr('class', 'cl-lg-6 table table-responsive table-bordered table-hover ')
+		        .call(internals.addRow);
 		});
 	}
 
@@ -72,7 +82,9 @@ angular.module('LeBrisouBackend.directives', [])
 							'class', 
 							'cl-lg-6 table table-responsive table-bordered table-hover top20')
         		.data([scope.entries])
-        	.enter().append('table')
+        	.enter().append('table').attr(
+							'class', 
+							'cl-lg-6 table table-responsive table-bordered table-hover top20')
 	        	.call(internals.addRow);
         	
         element.removeAttr("view-node");

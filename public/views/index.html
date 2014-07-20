@@ -37,17 +37,18 @@
         </ul>
       </div>
     </nav>
-    <div id="content" ng-controller="MainCtrl">
+    <div id="content" ng-controller="MainCtrl" ng-init='query();'>
       <form>
         <div class="col-lg-6">
           <div class="input-group">
             <input ng-model="limit" placeholder="Number of results" class="form-control">
-            <span class="input-group-btn"><button ng-click="query(limit)" type="submit" class="btn btn-default">View</button></span>
+            <span class="input-group-btn"><button ng-glick="query(limit)" type="submit" class="btn btn-default">View</button></span>
           </div>
         </div>
       </form>
       <div ng-if="entries">
         <div view-node></div>
       </div>
+      
   </body>
 </html>

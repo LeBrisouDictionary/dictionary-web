@@ -1,3 +1,3 @@
 
 angular.module('LeBrisouBackend.config', [])
-		.constant('apiUrl', 'https://localhost:8081/api');
+		.constant('apiUrl', 'http://localhost:8081/api');
