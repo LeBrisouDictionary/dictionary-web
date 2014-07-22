@@ -23,3 +23,13 @@ th .delete, td .delete {
 table tbody {
 	margin-top: 0px;
 }
+
+
+/* TOM CUSTOM */
+.title{
+    background: red;
+}
+
+.object{
+    border: 1px solid black;
+}
