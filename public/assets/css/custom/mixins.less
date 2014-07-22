@@ -1,0 +1,223 @@
+
+// PLACING --------------------------------------------------------------------
+.padding-by-plans(@hor, @vert){padding: @vert @hor @vert @hor;}
+.padding-vert(@padding){
+    padding-top: @padding;
+    padding-bottom: @padding;
+}
+.padding-hor(@padding){
+    padding-left: @padding;
+    padding-right: @padding;
+}
+.padding-reset(@left: 0, @right: 0, @top: 0, @bottom: 0){
+    padding: @top @right @bottom @left;
+}
+
+.margin-by-plans(@hor, @vert){margin: @vert @hor @vert @hor;}
+.margin-vert(@margin){
+    margin-top: @margin;
+    margin-bottom: @margin;
+}
+.margin-hor(@margin){
+    margin-left: @margin;
+    margin-right: @margin;
+}
+.margin-reset(@left: 0, @right: 0, @top: 0, @bottom: 0){
+    margin: @top @right @bottom @left;
+}
+
+.fix-pos(@top: auto, @right: auto, @bottom: auto, @left: auto){
+    position: fixed;
+    top: @top;
+    right: @right;
+    bottom: @bottom;
+    left: @left;
+}
+
+.abs-pos(@top: auto, @left: auto, @bottom: auto, @right: auto){
+    position: absolute;
+    top: @top;
+    right: @right;
+    bottom: @bottom;
+    left: @left;
+}
+
+.relative(@top: auto, @left: auto, @bottom: auto, @right: auto){
+    position: relative;
+    float: left;
+    top: @top;
+    right: @right;
+    bottom: @bottom;
+    left: @left;
+}
+
+.size(@width: auto, @height: auto){
+    width: @width;
+    height: @height;
+}
+.min-size(@width: 1px, @height: 1px){
+    min-width: @width;
+    min-height: @height;
+}
+
+.rotate(@angle){
+    -webkit-transform: rotate(@angle);
+    -moz-transform: rotate(@angle);
+    -o-transform: rotate(@angle);
+    -ms-transform: rotate(@angle);
+    writing-mode: lr-tb;
+}
+
+.full-page(@height: auto){
+    width: 100%;
+    height: @height;
+}
+
+.column(@width: 100%, @margin-hor: 0){
+    .relative();
+    width: @width;
+    .padding-hor(@margin-hor);
+}
+
+.spacer{
+    .make-xs-column(12, @grid-gutter-width);
+    height: @grid-gutter-width/2;
+}
+
+
+// STYLING --------------------------------------------------------------------
+.custom-transition(@property, @time: @anim-time){
+    -webkit-transition: @property @time;
+    -moz-transition: @property @time;
+    -ms-transition: @property @time;
+    -o-transition: @property @time;
+    transition: @property @time;
+}
+
+.multiple-transition(@property1, @property2, @time: @anim-time){
+    -webkit-transition: @property1 @time, @property2 @time;
+    -moz-transition: @property1 @time, @property2 @time;
+    -ms-transition: @property1 @time, @property2 @time;
+    -o-transition: @property1 @time, @property2 @time;
+    transition: @property1 @time, @property2 @time;
+}
+
+.all-transition(@time: @anim-time){
+    -webkit-transition: all @time;
+    -moz-transition: all @time;
+    -ms-transition: all @time;
+    -o-transition: all @time;
+    transition: all @time;
+}
+
+.opacity-hover(@nativ: 0.75, @hover: 1, @anim-time: @anim-time){
+    opacity: @nativ;
+    &:hover{opacity: @hover;}
+    .custom-transition(opacity, @anim-time);
+}
+
+.background-image(@url, @xpos: center, @ypos: center, @bg-color: transparent){
+    background: url(@url) no-repeat @xpos @ypos;
+    background-color: @bg-color;
+    background-size: cover;
+}
+
+.apply-color(@bg: transparent, @text: @text-color){
+    background: @bg;
+    color: @text;
+}
+
+.box-shadowed(@shadow){
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow:    @shadow;
+    box-shadow:         @shadow;
+}
+
+.text-shadowed(@shadow){
+    -webkit-text-shadow: @shadow;
+       -moz-text-shadow: @shadow;
+        -ms-text-shadow: @shadow;
+         -o-text-shadow: @shadow;
+            text-shadow: @shadow;
+}
+
+.global-border-radius(@radius: @radius){
+    -webkit-border-radius: @radius;
+    -khtml-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+.border-radius-select(@top-left: 0px; @top-right: 0px; @bottom-right: 0px; @bottom-left: 0px){
+    -webkit-border-top-left-radius: @top-left;
+    -khtml-border-top-left-radius: @top-left;
+    -moz-border-top-left-radius: @top-left;
+    border-top-left-radius: @top-left;
+    
+    -webkit-border-top-right-radius: @top-right;
+    -khtml-border-top-right-radius: @top-right;
+    -moz-border-top-right-radius: @top-right;
+    border-top-right-radius: @top-right;
+    
+    -webkit-border-bottom-left-radius: @bottom-left;
+    -khtml-border-bottom-left-radius: @bottom-left;
+    -moz-border-bottom-left-radius: @bottom-left;
+    border-bottom-left-radius: @bottom-left;
+    
+    -webkit-border-bottom-right-radius: @bottom-right;
+    -khtml-border-bottom-right-radius: @bottom-right;
+    -moz-border-bottom-right-radius: @bottom-right;
+    border-bottom-right-radius: @bottom-right;
+}
+
+.font-ratio(@ratio: 1){
+    font-size: floor(@font-size-base * @ratio);
+}
+
+.double-bordered(@left: 0, @right: 0, @top: 0, @bottom: 0, @bc1: @main-light-gray, @bc2: @accent-color){
+    border-top: @top solid @bc1;
+    border-bottom: @bottom solid @bc1;
+    border-right: @right solid @bc1;
+    border-left: @left solid @bc1;
+
+    &:after{
+        border-top: @top solid @bc2;
+        border-bottom: @bottom solid @bc2;
+        border-right: @right solid @bc2;
+        border-left: @left solid @bc2;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: @bottom;
+        pointer-events: none;
+    }
+}
+
+.rounded(@size){
+    .square(@size);
+    .global-border-radius(@size);
+}
+
+.cadre(@border-size: 1px; @border-color: @main-light-gray; @padding: 0px){
+    border: @border-size solid @border-color;
+    padding: @padding;
+    .global-border-radius();
+}
+
+.img-thumb(@padding: @grid-gutter-width/2, @bg-color: @main-dark-gray-so, @border-color: @main-light-gray){
+    img{
+        .cadre(@padding: @padding, @border-size: 0);
+        .apply-color(@bg-color);
+        .box-shadowed(@inset-dark-box-shadow);
+    }
+}
+
+.standard-cell(@border-color){
+    .make-xs-column(12, 0);
+    min-height: @grid-gutter-width;
+    line-height: @grid-gutter-width;
+    vertical-align: middle;
+    border-bottom: 1px solid @border-color;
+}
