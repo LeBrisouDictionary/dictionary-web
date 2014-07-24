@@ -21,7 +21,7 @@ angular.module('LeBrisouBackend.directives', [])
 
       //     return tbody;
       // }
-      internals.word = ['id', 'lema', 'gerund', 'participle', 'language', 'register']
+      internals.word = ['id', 'lema', 'gerund', 'participle', 'language', 'register'];
       internals.addRow = function (attach) {
 
         attach.each(function (entry) {
@@ -43,40 +43,35 @@ angular.module('LeBrisouBackend.directives', [])
           }, d3.map()) // map with unique keynames as keys
           .keys();
 
+          // console.log(colnames)
+
+
+          // FIRST LINE ===================================================
           var f_colnames = colnames.filter(function (d) {
             if (internals.word.indexOf(d) != -1) return d;
-          })
+          });
 
           // TITLES
-          console.log(colnames)
           key = table.append("div")
             .attr('class', 't')
             .selectAll("div")
             .data(f_colnames)
-            .enter().append("div").attr('class', 'key')
+            .enter().append("div").attr('class', 'key fcol')
             .text(function (e) {
               return e;
             });
 
           // BODY
-          value = table.append('div').attr('class', 't').selectAll('div')
+          value = table.append('div').attr('class', 'v').selectAll('div')
             .data(function (e) {
               return f_colnames.map(function (k) {
-                if (e[k] instanceOf Object) {
-                  return
+                if (e[k] instanceof Object) {
+                  return e[k][k];
                 }
-                console.log('ZZZZZZZ', k, e);
                 return e[k] || "";
               });
             })
-            .enter().append('div').attr('class', 'key')
-
-
-          // Object.keys(d)[0][
-
-          // value.filter(function(d){
-          //     return (d instanceof Object) ? Object.keys(d)[0] : false
-          // });
+            .enter().append('div').attr('class', 'value fcol');
 
           value.filter(function (d) {
             return (!(d instanceof Array) && !(d instanceof Object));
@@ -85,12 +80,47 @@ angular.module('LeBrisouBackend.directives', [])
               return d;
             });
 
-          value.filter(function (d) {
-            return ((d instanceof Array) || (d instanceof Object));
-          })
-            .append("table")
-            .attr('class', 'subtable')
-            .call(internals.addRow);
+
+          // SECOND LINE ===================================================
+          var s_colnames = colnames.filter(function (d){
+            if (d == "definitions") return d;
+          });
+
+          // TITLES
+          s_key = table.append("div")
+            .attr('class', 't')
+            .selectAll("div")
+            .data(s_colnames)
+            .enter().append("div").attr('class', 'key scol')
+            .text(function (e) {
+
+              return e;
+            });
+
+          // BODY
+          s_value = table.append('div').attr('class', 'v').selectAll('div')
+            .data(function (e) {
+              return s_colnames.map(function (k) {
+                console.log(e[k][0])
+                if (e[k] instanceof Object) {
+                  // console.log("---------object---------")
+                  return e[k][k];
+                } else if (e[k] instanceof Array) {
+                  // console.log("---------array---------")
+                  return e[k]
+                }
+                // return e[k] || "";
+              });
+            })
+            .enter().append('div').attr('class', 'value scol');
+
+          // value.filter(function (d) {
+          //   return (!(d instanceof Array) && !(d instanceof Object));
+          // })
+          //   .text(function (d) {
+          //     return d;
+          //   });
+
         });
       }
 
@@ -98,7 +128,7 @@ angular.module('LeBrisouBackend.directives', [])
       return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-          console.log(scope.entries);
+          // console.log(scope.entries);
 
           d3.select(element[0])
             .append('div').selectAll('div')
