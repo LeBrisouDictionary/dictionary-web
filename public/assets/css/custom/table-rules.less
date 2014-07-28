@@ -18,10 +18,14 @@
 
 .key{
     .apply-color(@main-light-gray, @accent-color);
+    &.scol{margin-top:@grid-gutter-width;}
 }
 
 .value{
     font-style: italic;
+    &.scol{
+        .apply-color(@main-white, red);
+    }
 }
 
 .subtable{

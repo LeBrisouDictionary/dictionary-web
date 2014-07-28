@@ -10,7 +10,7 @@ angular.module('LeBrisouBackend.controllers', ['LeBrisouBackend.config'])
   	$scope.query = function(){
       var url = apiUrl + '/words';
       if(!$scope.limit){ // ! is a hack to slice results
-        url += '?limit=2'//+$scope.limit
+        url += '?limit=1&offset=1'//+$scope.limit
       }
   		$http.get(url).
       success(function(data) {
