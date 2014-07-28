@@ -21,13 +21,13 @@ angular.module('LeBrisouBackend.directives', [])
 
       //     return tbody;
       // }
-      internals.word = ['id', 'lema', 'gerund', 'participle', 'language', 'register'];
+      internals.word = ['id', 'lema', 'pos', 'gerund', 'participle', 'language', 'register'];
       internals.addRow = function (attach) {
 
         attach.each(function (entry) {
           var colnames,
-            key,
-            value,
+            key, s_key,
+            value, s_value,
             table = d3.select(this);
 
           if (entry instanceof Object) {
@@ -83,7 +83,9 @@ angular.module('LeBrisouBackend.directives', [])
 
           // SECOND LINE ===================================================
           var s_colnames = colnames.filter(function (d){
-            if (d == "definitions") return d;
+            if(entry[0][d] instanceof Array){
+              return d;
+            }
           });
 
           // TITLES
@@ -93,26 +95,103 @@ angular.module('LeBrisouBackend.directives', [])
             .data(s_colnames)
             .enter().append("div").attr('class', 'key scol')
             .text(function (e) {
-
               return e;
             });
+          
+          var fields = ['relatives', 'synonyms', 'antonyms'];
+          
+          
+          var t_key = s_key.append("div")
+            .attr('class', "v")
+            .selectAll('div')
+            .data(function(e){
+              var a = entry[0][e];
+              var ret = {};
+              ret[e] = a;
+              
+              return [ret];
+              
+          }).enter().append('div').attr('class', 'value scol');
+            
+          t_key.filter(function(e){
+            console.log(e);
+            return ((fields.indexOf(Object.keys(e)[0])) != -1) ? true : false;
+          })
+          .text(function(e){
+              var index = fields.indexOf(Object.keys(e)[0]);
+              var c_obj_key = fields[index];
+              var c_obj = e[c_obj_key][0];
+              var e_keys = Object.keys(c_obj);
+            
+              var ret =  e_keys
+                .map(function(f){
+                  if (internals.word.indexOf(f) != -1){
+                    return c_obj[f];
+                  } 
+                });
+              return ret.join(' ');
+            });
+          
 
+          t_key.filter(function(e){
+            console.log(e);
+            return ((['countries'].indexOf(Object.keys(e)[0])) != -1) ? true : false;
+          })
+          .text(function(e){
+              var c_obj_key = "countries";
+              var c_obj = e[c_obj_key][0];
+
+              return [c_obj.id, c_obj.country, c_obj.wordCountry.frequency].join(' ');
+
+            });  
+          
+          t_key.filter(function(e){
+            console.log(e);
+            return ((['hyperlinks'].indexOf(Object.keys(e)[0])) != -1) ? true : false;
+          })
+          .text(function(e){
+              var c_obj_key = "hyperlinks";
+              var c_obj = e[c_obj_key][0];
+
+              return [c_obj.id, c_obj.hyperlink].join(' ');
+
+            });
+            
+          t_key.filter(function(e){
+            console.log(e);
+            return ((['definitions'].indexOf(Object.keys(e)[0])) != -1) ? true : false;
+          })
+          .text(function(e){
+              return "Definitions";
+              // var c_obj_key = fields[index];
+              // var c_obj = e[c_obj_key][0];
+              // var e_keys = Object.keys(c_obj);
+            
+              // var ret =  e_keys
+              //   .map(function(f){
+              //     if (internals.word.indexOf(f) != -1){
+              //       return c_obj[f];
+              //     } 
+              //   });
+
+            });  
+          
           // BODY
-          s_value = table.append('div').attr('class', 'v').selectAll('div')
-            .data(function (e) {
-              return s_colnames.map(function (k) {
-                console.log(e[k][0])
-                if (e[k] instanceof Object) {
-                  // console.log("---------object---------")
-                  return e[k][k];
-                } else if (e[k] instanceof Array) {
-                  // console.log("---------array---------")
-                  return e[k]
-                }
-                // return e[k] || "";
-              });
-            })
-            .enter().append('div').attr('class', 'value scol');
+          // s_value = table.append('div').attr('class', 'v').selectAll('div')
+          //   .data(function (e) {
+          //     return s_colnames.map(function (k) {
+          //       console.log(e[k][0])
+          //       if (e[k] instanceof Object) {
+          //         // console.log("---------object---------")
+          //         return e[k][k];
+          //       } else if (e[k] instanceof Array) {
+          //         // console.log("---------array---------")
+          //         return e[k]
+          //       }
+          //       // return e[k] || "";
+          //     });
+          //   })
+          //   .enter().append('div').attr('class', 'value scol');
 
           // value.filter(function (d) {
           //   return (!(d instanceof Array) && !(d instanceof Object));
