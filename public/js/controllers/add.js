@@ -8,13 +8,13 @@ angular.module('LeBrisouBackend.controllers', ['LeBrisouBackend.config'])
   	}
 
   	$scope.query = function(){
-  		$http.get(api_url).
+  		$http.get(api_url+'/words').
       success(function(data) {
         console.log(data);
-        if(data && data.success){
-          $scope.entries = data.results;
+        if(data && data.result){
+          $scope.entries = data.result;
 
-          var jsonData = data.results;
+          var jsonData = data.result
           var results = [];
           angular.forEach(jsonData, function(key, value){
             console.log(key, value);

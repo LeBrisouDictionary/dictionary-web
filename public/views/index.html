@@ -45,161 +45,67 @@
         </div>
       </form>
       <div ng-if="entries">
-        <table class=" cl-lg-6 table table-responsive table-bordered table-hover top20" ng-repeat="entry in entries">
-          <thead ng-hide="$index">
-          <tr> 
-            <th class="entry">#</span></th>
-            <th class="entry">Id</th>
-            <th class="entry">Lema</th>
-            <th class="entry">Pos</th>
-            <th class="entry">gerund</th>
-            <th class="entry">participle</th>
-            <th class="entry">Language</th>
-            <th class="entry">Delete</th>
-          </tr>
-          </thead>
-          <tr id="word_{{entry.id}}" >
-            <td class="entry" ng-click="show_word_details = !show_word_details; show_definitions = false; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></td>
-            <td class="entry">{{entry.id}}</td>
-            <td class="entry">{{entry.lema}}</td>
-            <td class="entry">{{entry.pos}}</td>
-            <td class="entry">{{entry.gerund}}</td>
-            <td class="entry">{{entry.participle}}</td>
-            <td id="{{entry.languageId}}"class="entry">{{entry.language.language}}</td>
-            <td class="delete">
+        <div class="table"> 
+          <div class="entry">#</span></div>
+          <div class="entry">Id</div>
+          <div class="entry">Lema</div>
+          <div class="entry">Pos</div>
+          <div class="entry">gerund</div>
+          <div class="entry">participle</div>
+          <div class="entry">Language</div>
+          <div class="entry">Delete</div>
+        </div>
+        <div class=" cl-lg-6 table table-responsive table-bordered table-hover" ng-repeat="entry in entries">
+          <div id="word_{{entry.id}}"div>
+            <div class="entry" ng-click="show_word_details = !show_word_details; show_definitions = false; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="entry">{{entry.id}}</div>
+            <div class="entry">{{entry.lema}}</div>
+            <div class="entry">{{entry.pos}}</div>
+            <div class="entry">{{entry.gerund}}</div>
+            <div class="entry">{{entry.participle}}</div>
+            <div id="{{entry.languageId}}"class="entry">{{entry.language.language}}</div>
+            <div class="delete">
               <span class="glyphicon glyphicon-remove"></span>
-            </td>
-          </tr>
-          <tr ng-show="show_word_details" class="ng-hide">
-            <td class="entry"></td>
-            <td class="entry"  ng-click="show_definitions = !show_definitions; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></td>
-            <td class="entry">Definitions</td>
-            <td class="entry"></td>
-            <td class="entry"></td>
-            <td class="entry"></td>
-            <td id="{{entry.languageId}}"class="entry"></td>
-            <td class="delete">
+            </div>
+          </div>
+          <div ng-show="show_word_details" class="ng-hide">
+            <div class="entry"></div>
+            <div class="entry"  ng-click="show_definitions = !show_definitions; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="entry">Definitions</div>
+            <div class="entry"></div>
+            <div class="entry"></div>
+            <div class="entry"></div>
+            <div id="{{entry.languageId}}"class="entry"></div>
+            <div class="delete">
               <span class="glyphicon glyphicon-remove"></span>
-            </td>
-          </tr>
-          <tbody ng-show="show_definitions" class="ng-hide" ng-repeat="definition in entry.definitions">
-            <tr>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry" ng-click="show_example = !show_example"><span class="glyphicon glyphicon-chevron-right"></span></td>
-              <td class="entry">Id: {{definition.id}}</td>
-              <td class="entry">{{definition.definition}}</td>
-              <td class="entry"></td>
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
+            </div>
+          </div>
+          <div ng-show="show_definitions" class="ng-hide" ng-repeat="definition in entry.definitions">
+            <div class="entry"></div>
+            <div class="entry"></div>
+            <div class="entry" ng-click="show_example = !show_example"><span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="entry">Id: {{definition.id}}</div>
+            <div class="entry">{{definition.definition}}</div>
+            <div class="entry"></div>
+            <div id="{{entry.languageId}}"class="entry"></div>
+            <div class="delete">
+              <span class="glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="ng-hide" ng-show="show_example" ng-if="definition.examples.length" ng-repeat="example in definition.examples">
+              <div class="entry"></div>
+              <div class="entry"></div>
+              <div class="entry"></div>
+              <div class="entry"></div>
+              <div class="entry">Id: {{example.id}}</div>
+              <div class="entry">{{example.example}}</div>
+              <div id="{{entry.languageId}}"class="entry"></div>
+              <div class="delete">
                 <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr>
-            <tr class="ng-hide" ng-show="show_example" ng-if="definition.examples.length" ng-repeat="example in definition.examples">
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry">Id: {{example.id}}</td>
-              <td class="entry">{{example.example}}</td>
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr   >
-          </tbody>
-         
+              </div>
+            </div>
+          </div>
 
-            <!-- 
-
-             <tr id="word_{{entry.id}}"  ng-repeat-start="entry in entries">
-              <td class="entry" ng-click="show_word_details = !show_word_details; show_definitions = false; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></td>
-              <td class="entry">{{entry.id}}</td>
-              <td class="entry">{{entry.lema}}</td>
-              <td class="entry">{{entry.pos}}</td>
-              <td class="entry">{{entry.gerund}}</td>
-              <td class="entry">{{entry.participle}}</td>
-              <td id="{{entry.languageId}}"class="entry">{{entry.language.language}}</td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr>
-            <tr ng-show="show_word_details" class="ng-hide" >
-              <td class="entry"></td>
-              <td class="entry" ng-click="show_definitions = !show_definitions; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></td>
-              <td class="entry">Definitions</td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr>
-             <tr ng-show="show_definitions" class="ng-hide" ng-repeat-start="definition in entry.definitions"  ng-repeat-end>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry" ng-click="show_example = !show_example"><span class="glyphicon glyphicon-chevron-right"></span></td>
-              <td class="entry">Id: {{definition.id}}</td>
-              <td class="entry">{{definition.definition}}</td>
-              <td class="entry"></td>
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr>
-            <tr ng-show="show_example" ng-if="definition.examples.length" class="ng-hide" ng-repeat-end ng-repeat="example in definition">
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry">Id: {{example.id}}</td>
-              <td class="entry">{{example.example}}</td>
-
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr   > -->
-            
-            <!-- <tr ng-show="show_word_details" class="ng-hide" >
-              <td class="entry"></td>
-              <td class="entry" ng-click="show_synonyms_details = !show_synonyms_details"><span class="glyphicon glyphicon-chevron-right"></span></td>
-              <td class="entry">Synonyms</td>
-              <td class="entry">{{entry.synonyms.length}}</td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-             </tr>-->
-            <!-- <tr ng-show="show_word_details" class="ng-hide" ng-repeat-end  ng-repeat-end  >
-              <td class="entry"></td>
-              <td class="entry" ng-click="show_synonyms_details = !show_synonyms_details"><span class="glyphicon glyphicon-chevron-right"></span></td>
-              <td class="entry">Antonyms</td>
-              <td class="entry">{{entry.antonyms.length}}</td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr>
-            <tr ng-show="show_synonyms_details" class="ng-hide" >
-              <td class="entry"></td>
-              <td class="entry" ng-click="hideShow()"><span class="glyphicon glyphicon-chevron-right"></span></td>
-              <td class="entry">Synonyms</td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td class="entry"></td>
-              <td id="{{entry.languageId}}"class="entry"></td>
-              <td class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </td>
-            </tr> -->
-
-        </table>
+        </div>
     </div>
   </body>
 </html>
