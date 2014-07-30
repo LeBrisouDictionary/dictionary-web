@@ -24,3 +24,13 @@ div {
 .table div {
 	display: inline-block;
 }
+
+/* TOM CUSTOM */
+.title{
+    background: red;
+}
+
+.object{
+    border: 1px solid black;
+}
+

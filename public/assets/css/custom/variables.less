@@ -1,0 +1,59 @@
+
+// SIZE ------------------------------------------
+@radius:                    0px;
+@border-radius-base:        @radius;
+
+@h1-ratio:                  2;
+@h2-ratio:                  1.8;
+@h3-ratio:                  1.4;
+
+@home-thumbnail-height:     150px;
+@dl-tr-height:              100px;
+
+// COLORS ----------------------------------------
+@main-black:                        #000;
+@main-dark:                         #202020;
+@main-dark-gray:                    darken(@main-dark, 1%);
+@main-dark-gray-so:                 fade(@main-dark-gray, 80%);
+@main-light-gray:                   lighten(@main-dark, 5%);
+@main-white:                        #f9f9f9;
+@main-white-darker:                 darken(@main-white, 5%);
+
+@custom-cyan:                       #53A389;
+
+@primary-color:                     @main-dark;
+@accent-color:                      @custom-cyan;
+@secondary-color:                   @custom-cyan;
+
+@body-bg:                           @main-white;
+@text-color:                        @main-dark;
+
+@link-color:                        @main-black;
+@link-hover-color:                  @accent-color;
+
+@navbar-default-link-color:         @main-dark;
+@navbar-default-link-hover-bg:      @accent-color;
+@navbar-default-link-hover-color:   @main-white;
+@navbar-default-brand-hover-color:  @main-white;
+@navbar-default-brand-hover-bg:     transparent;
+
+@navbar-default-toggle-hover-bg:    @main-white;
+@navbar-default-toggle-border-color:@main-white;
+
+// FONTS -----------------------------------------
+@font-family-base:          'Arial';
+@font-size-base:            16px;
+
+// TIME ------------------------------------------
+@anim-time:                 300ms;
+
+// SHADOWS ---------------------------------------
+@black-text-shadow: 1px 2px 2px @main-black;
+@dark-text-shadow: 1px 1px 0px @main-dark;
+@gray-text-shadow: 1px 1px 0px @main-light-gray;
+@accent-text-shadow: 1px 1px 0px @accent-color;
+
+@accent-box-shadow: 0px 0px 6px 0px @accent-color;
+@white-box-shadow: 0px 0px 6px 0px @main-white;
+@inset-box-shadow: rgba(54, 54, 54, 0.15) 0px 1px 1px inset, rgba(255, 255, 255, 0.8) 0px -1px 1px inset;
+@inset-dark-box-shadow: @main-black 0px 1px 1px inset, @main-light-gray 0px -1px 1px inset;

@@ -1,5 +1,5 @@
 angular.module('LeBrisouBackend.controllers', ['LeBrisouBackend.config'])
-  .controller('MainCtrl', [ '$scope', '$http', 'api_url', function($scope, $http, api_url) {
+  .controller('MainCtrl', [ '$scope', '$http', 'apiUrl', function($scope, $http, apiUrl) {
   	$scope.def_ex = {};
   	$scope.insert = function($attrs) {
   		$scope.def_ex['lema'] = $attrs.lema;
@@ -8,19 +8,16 @@ angular.module('LeBrisouBackend.controllers', ['LeBrisouBackend.config'])
   	}
 
   	$scope.query = function(){
-  		$http.get(api_url+'/words').
+
+      var url = apiUrl + '/words';
+      if(!$scope.limit){ // ! is a hack to slice results
+        url += '?limit=1&offset=1'//+$scope.limit
+      }
+  		$http.get(url).
       success(function(data) {
-        console.log(data);
         if(data && data.result){
           $scope.entries = data.result;
 
-          var jsonData = data.result
-          var results = [];
-          angular.forEach(jsonData, function(key, value){
-            console.log(key, value);
-            results.push({ id : key.id, lema : key.lema, pos : key.pos, gerund : key.gerung, participle :key.participle });
-            // results.push({ })
-          });
         }
       });
   	}

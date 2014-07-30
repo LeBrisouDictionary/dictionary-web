@@ -1,5 +1,4 @@
-module.exports = [
-  {
+module.exports = [{
     path: "/css/{path*}",
     method: "GET",
     handler: {
@@ -21,8 +20,7 @@ module.exports = [
         index: false
       }
     }
-  },
-  {
+  }, {
     path: "/{path*}",
     method: "GET",
     handler: {
@@ -32,5 +30,5 @@ module.exports = [
         index: true
       }
     }
-}
+  }
 ]
