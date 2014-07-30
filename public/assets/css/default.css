@@ -1,6 +1,3 @@
-th .entry ,td .entry {
-	width: 20%;
-}
 
 .top20 {
 	margin-top: 20px;
@@ -12,7 +9,7 @@ th .entry ,td .entry {
 	margin-right: 1%;
 }
 
-th .delete, td .delete {
+div .delete, div .delete {
 	width: 10%;
 }
 
@@ -20,7 +17,7 @@ th .delete, td .delete {
 	margin-left: 20px;
 }
 
-table tbody {
+div {
 	margin-top: 0px;
 }
 
@@ -33,3 +30,4 @@ table tbody {
 .object{
     border: 1px solid black;
 }
+
