@@ -84,6 +84,11 @@
     height: @grid-gutter-width/2;
 }
 
+.line-height(@height){
+    height: @height;
+    line-height: @height;
+}
+
 
 // STYLING --------------------------------------------------------------------
 .custom-transition(@property, @time: @anim-time){
@@ -123,6 +128,7 @@
 }
 
 .apply-color(@bg: transparent, @text: @text-color){
+    .multiple-transition(background, color);
     background: @bg;
     color: @text;
 }
@@ -220,4 +226,12 @@
     line-height: @grid-gutter-width;
     vertical-align: middle;
     border-bottom: 1px solid @border-color;
+}
+
+.is-trigger(){
+    .apply-color(@main-dark, @main-white);
+    .padding-by-plans(@grid-gutter-width/2; @grid-gutter-width/4);
+    z-index: 20;
+    cursor: pointer;
+    &:hover{.apply-color(@accent-color, @main-white);}
 }

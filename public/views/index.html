@@ -48,42 +48,43 @@
         </div>
       </div>
     </nav>
-    <div id="content" ng-controller="MainCtrl">
+
+    <div id="content" class="container" ng-controller="MainCtrl">
+
       <form>
-        <div class="col-lg-6">
-          <div class="input-group">
-            <input name="limit" placeholder="Number of results" class="form-control">
-            <span class="input-group-btn"><button ng-click="query()" type="submit" class="btn btn-default">View</button></span>
-          </div>
+        <div class="input-group">
+          <input name="limit" placeholder="Number of results" class="form-control">
+          <span class="input-group-btn"><button ng-init="query()" ng-click="query()" type="submit" class="btn btn-default">View</button></span>
         </div>
       </form>
+
+
       <div ng-if="entries">
-        <div class="table"> 
-          <div class="entry">#</span></div>
-          <div class="entry">Id</div>
-          <div class="entry">Lema</div>
-          <div class="entry">Pos</div>
-          <div class="entry">gerund</div>
-          <div class="entry">participle</div>
-          <div class="entry">Language</div>
-          <div class="entry">Delete</div>
+
+        <div class="labels-gr">
+          <div class="label">Id</div>
+          <div class="label">Lema</div>
+          <div class="label">Pos</div>
+          <div class="label">gerund</div>
+          <div class="label">participle</div>
+          <div class="label">Language</div>
         </div>
-        <div class=" cl-lg-6 table table-responsive table-bordered table-hover" ng-repeat="entry in entries">
+
+        <div class="word" ng-repeat="entry in entries">
           <div id="word_{{entry.id}}"div>
-            <div class="entry" ng-click="show_word_details = !show_word_details; show_definitions = false; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></div>
-            <div class="entry">{{entry.id}}</div>
-            <div class="entry">{{entry.lema}}</div>
-            <div class="entry">{{entry.pos}}</div>
-            <div class="entry">{{entry.gerund}}</div>
-            <div class="entry">{{entry.participle}}</div>
-            <div id="{{entry.languageId}}"class="entry">{{entry.language.language}}</div>
-            <div class="delete">
-              <span class="glyphicon glyphicon-remove"></span>
-            </div>
+            <div class="show-details" ng-click="show_word_details = !show_word_details; show_definitions = false; show_example = false;">open</div>
+            <div class="value">{{entry.id}}</div>
+            <div class="value">{{entry.lema}}</div>
+            <div class="value">{{entry.pos}}</div>
+            <div class="value">{{entry.gerund}}</div>
+            <div class="value">{{entry.participle}}</div>
+            <div class="value" id="{{entry.languageId}}">{{entry.language.language}}</div>
+            <div class="delete-word" ng-click="remove()">x</div>
           </div>
+
           <div ng-show="show_word_details" class="ng-hide">
             <div class="entry"></div>
-            <div class="entry"  ng-click="show_definitions = !show_definitions; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></div>
+            <div class="entry" ng-click="show_definitions = !show_definitions; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></div>
             <div class="entry">Definitions</div>
             <div class="entry"></div>
             <div class="entry"></div>
@@ -93,6 +94,7 @@
               <span class="glyphicon glyphicon-remove"></span>
             </div>
           </div>
+          
           <div ng-show="show_definitions" class="ng-hide" ng-repeat="definition in entry.definitions">
             <div class="entry"></div>
             <div class="entry"></div>
