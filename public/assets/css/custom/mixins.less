@@ -248,11 +248,20 @@
         .padding-vert(@grid-gutter-width/4);
         font-style: italic;
         &.def-value{min-height: @grid-gutter-width*1.5;}
-        &.country-value{.font-ratio(1.2);}
+        &.country-value{
+            .font-ratio(1.2);
+            float: left;
+        }
         &.w-value{
             .make-xs-column(2, 0);
             text-align: center;
         }
+    }
+    .country-flag{
+        margin: @grid-gutter-width/4;
+        margin-top: @grid-gutter-width/3;
+        float: left;
+        vertical-align: middle;
     }
 
     .example-container{
