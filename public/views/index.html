@@ -184,6 +184,16 @@
           </div>
 
 
+          <!-- HYPERLINKS -->
+          <div class="ng-hide details-container" ng-show="show_word_details" ng-if="entry.hyperlinks.length">
+            <div class="details-label">Hyperlinks</div>
+
+            <div class="details-wrapper details-col c{{entry.hyperlinks.length}}" ng-repeat="hyperlink in entry.hyperlinks">
+              <a class="details-value link-value" href="{{hyperlink.hyperlink}}" target="_blank">{{hyperlink.hyperlink}}</a>
+            </div>
+          </div>
+
+
         </div>
 
     </div>
