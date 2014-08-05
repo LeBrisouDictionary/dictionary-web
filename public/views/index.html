@@ -16,7 +16,8 @@
 
     <script type="text/JavaScript" src="/js/app.js"></script>
     <script type="text/JavaScript" src="/js/config/config.js"></script>
-    <script type="text/JavaScript" src="/js/controllers/main.js"></script>
+    <script type="text/JavaScript" src="/js/controllers/mainCtrl.js"></script>
+    <script type="text/JavaScript" src="/js/filters/index.js"></script>
     <script type="text/JavaScript" src="/js/directives/add-def-ex.js"></script>
     <script type="text/JavaScript" src="/js/directives/view-node.js"></script>
   
@@ -105,7 +106,7 @@
             <div class="details-label">Countries</div>
 
             <div class="details-wrapper details-col c{{entry.countries.length}}" ng-repeat="country in entry.countries">
-              <div class="details-value country-value">{{country.country}}</div>
+              <div class="details-value country-value">{{country.country | toImgUrl }}</div>
               <img src="" class="country-flag" alt="{{country.country}} flag" />
             </div>
           </div>
