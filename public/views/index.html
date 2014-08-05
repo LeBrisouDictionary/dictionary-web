@@ -2,13 +2,8 @@
   <head>
 
     <title>LeBrisou - Admin</title>
-
-  <link rel="stylesheet" href="/css/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/vendor/bootstrap/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/vendor/bootstrap/bootstrap.icon-large.min.css">
-    <link rel="stylesheet" href="/css/default.css"> 
   
-   <link href="/css/main.less" type="text/less" rel="stylesheet"/>
+    <link href="/css/main.less" type="text/less" rel="stylesheet"/>
 
     <script type="text/javascript">
       var less = {}; less.env = 'development';
@@ -65,59 +60,41 @@
           <div class="label">Id</div>
           <div class="label">Lema</div>
           <div class="label">Pos</div>
-          <div class="label">gerund</div>
-          <div class="label">participle</div>
+          <div class="label">Gerund</div>
+          <div class="label">Participle</div>
           <div class="label">Language</div>
         </div>
 
+
         <div class="word" ng-repeat="entry in entries">
-          <div id="word_{{entry.id}}"div>
-            <div class="show-details" ng-click="show_word_details = !show_word_details; show_definitions = false; show_example = false;">open</div>
-            <div class="value">{{entry.id}}</div>
-            <div class="value">{{entry.lema}}</div>
-            <div class="value">{{entry.pos}}</div>
-            <div class="value">{{entry.gerund}}</div>
-            <div class="value">{{entry.participle}}</div>
-            <div class="value" id="{{entry.languageId}}">{{entry.language.language}}</div>
+
+          <div class="main-value-cont" id="word_{{entry.id}}">
+            <div class="show-details" ng-click="show_word_details = !show_word_details">details</div>
+
+            <div class="main-value">{{entry.id}}</div>
+            <div class="main-value">{{entry.lema}}</div>
+            <div class="main-value">{{entry.pos}}</div>
+            <div class="main-value">{{entry.gerund}}</div>
+            <div class="main-value">{{entry.participle}}</div>
+            <div class="main-value" id="{{entry.languageId}}">{{entry.language.language}}</div>
+
             <div class="delete-word" ng-click="remove()">x</div>
           </div>
-
-          <div ng-show="show_word_details" class="ng-hide">
-            <div class="entry"></div>
-            <div class="entry" ng-click="show_definitions = !show_definitions; show_example = false;"><span class="glyphicon glyphicon-chevron-right"></span></div>
-            <div class="entry">Definitions</div>
-            <div class="entry"></div>
-            <div class="entry"></div>
-            <div class="entry"></div>
-            <div id="{{entry.languageId}}"class="entry"></div>
-            <div class="delete">
-              <span class="glyphicon glyphicon-remove"></span>
-            </div>
-          </div>
           
-          <div ng-show="show_definitions" class="ng-hide" ng-repeat="definition in entry.definitions">
-            <div class="entry"></div>
-            <div class="entry"></div>
-            <div class="entry" ng-click="show_example = !show_example"><span class="glyphicon glyphicon-chevron-right"></span></div>
-            <div class="entry">Id: {{definition.id}}</div>
-            <div class="entry">{{definition.definition}}</div>
-            <div class="entry"></div>
-            <div id="{{entry.languageId}}"class="entry"></div>
-            <div class="delete">
-              <span class="glyphicon glyphicon-remove"></span>
+
+          <div class="ng-hide details-container details-col details-col-{{entry.definitions.length}}" ng-show="show_word_details" ng-repeat="definition in entry.definitions" ng-init="def={show_example: false}">
+          
+            <div>Definition {{definition.id}}</div>
+            <div class="details-value">{{definition.definition}}</div>
+
+            <div class="show-examples" ng-if="definition.examples.length" ng-click="def.show_example = !def.show_example">examples</div>
+            
+            <div class="ng-hide details-col details-col-{{definition.examples.length}} example-container" ng-show="def.show_example" ng-repeat="example in definition.examples">
+              <div>Example {{example.id}}</div>
+              <div class="details-value">{{example.example}}</div>
             </div>
-            <div class="ng-hide" ng-show="show_example" ng-if="definition.examples.length" ng-repeat="example in definition.examples">
-              <div class="entry"></div>
-              <div class="entry"></div>
-              <div class="entry"></div>
-              <div class="entry"></div>
-              <div class="entry">Id: {{example.id}}</div>
-              <div class="entry">{{example.example}}</div>
-              <div id="{{entry.languageId}}"class="entry"></div>
-              <div class="delete">
-                <span class="glyphicon glyphicon-remove"></span>
-              </div>
-            </div>
+
+            <div class="delete"><span class="glyphicon glyphicon-remove"></span></div>
           </div>
 
         </div>

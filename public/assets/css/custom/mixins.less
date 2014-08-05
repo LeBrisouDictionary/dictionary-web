@@ -230,8 +230,9 @@
 
 .is-trigger(){
     .apply-color(@main-dark, @main-white);
-    .padding-by-plans(@grid-gutter-width/2; @grid-gutter-width/4);
+    .padding-by-plans(@grid-gutter-width/4; @grid-gutter-width/6);
+    .font-ratio(0.9);
     z-index: 20;
     cursor: pointer;
-    &:hover{.apply-color(@accent-color, @main-white);}
+    &:hover{.apply-color(@main-dark, @accent-color);}
 }
