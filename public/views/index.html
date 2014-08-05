@@ -95,7 +95,6 @@
                 <div class="details-value">{{example.example}}</div>
               </div>
 
-              <div class="delete"><span class="glyphicon glyphicon-remove"></span></div>
             </div>
 
           </div>
@@ -108,8 +107,6 @@
             <div class="details-wrapper details-col c{{entry.countries.length}}" ng-repeat="country in entry.countries">
               <div class="details-value country-value">{{country.country}}</div>
             </div>
-
-            <div class="delete"><span class="glyphicon glyphicon-remove"></span></div>
           </div>
 
 
@@ -117,10 +114,22 @@
           <div class="ng-hide details-container" ng-show="show_word_details" >
             <div class="details-label">Antonyms</div>
 
-            <div class="details-wrapper details-col c{{entry.antonyms.length}}" ng-repeat="antonym in entry.antonyms">
-
-              <div class="details-value">{{antonym.antonym}}</div>
-              <div class="delete"><span class="glyphicon glyphicon-remove"></span></div>
+            <div class="labels-gr">
+              <div class="label">Id</div>
+              <div class="label">Lema</div>
+              <div class="label">Pos</div>
+              <div class="label">Gerund</div>
+              <div class="label">Participle</div>
+              <div class="label">Language</div>
+            </div>
+            
+            <div class="details-wrapper" ng-repeat="antonym in entry.antonyms">
+              <div class="details-value w-value">{{antonym.id}}</div>
+              <div class="details-value w-value">{{antonym.lema}}</div>
+              <div class="details-value w-value">{{antonym.pos}}</div>
+              <div class="details-value w-value">{{antonym.gerund}}</div>
+              <div class="details-value w-value">{{antonym.participle}}</div>
+              <div class="details-value w-value">{{antonym.language}}</div>
             </div>
           </div>
 
@@ -128,6 +137,24 @@
           <!-- SYNONYMS -->
           <div class="ng-hide details-container" ng-show="show_word_details" >
             <div class="details-label">Synonyms</div>
+
+            <div class="labels-gr">
+              <div class="label">Id</div>
+              <div class="label">Lema</div>
+              <div class="label">Pos</div>
+              <div class="label">Gerund</div>
+              <div class="label">Participle</div>
+              <div class="label">Language</div>
+            </div>
+            
+            <div class="details-wrapper" ng-repeat="synonym in entry.synonyms">
+              <div class="details-value w-value">{{synonym.id}}</div>
+              <div class="details-value w-value">{{synonym.lema}}</div>
+              <div class="details-value w-value">{{synonym.pos}}</div>
+              <div class="details-value w-value">{{synonym.gerund}}</div>
+              <div class="details-value w-value">{{synonym.participle}}</div>
+              <div class="details-value w-value">{{synonym.language}}</div>
+            </div>
           </div>
 
         </div>

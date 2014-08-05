@@ -241,18 +241,22 @@
     .apply-color(@details-color);
 
     .details-label{
-        .font-ratio(1.2);
+        .font-ratio(1.4);
         .make-xs-column(12, @grid-gutter-width);
     }
     .details-value{
+        .padding-vert(@grid-gutter-width/4);
         font-style: italic;
         &.def-value{min-height: @grid-gutter-width*1.5;}
         &.country-value{.font-ratio(1.2);}
+        &.w-value{
+            .make-xs-column(2, 0);
+            text-align: center;
+        }
     }
 
     .example-container{
         .apply-color(@main-dark, @details-color);
-        .details-value{}
     }
     .show-examples{
         .make-xs-column(12, 0);
