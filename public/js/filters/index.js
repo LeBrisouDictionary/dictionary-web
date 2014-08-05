@@ -1,6 +1,6 @@
-angular.module('filters', []).
-  filter('toimg', function () {
+angular.module('LeBrisouBackend.filters', []).
+  filter('toImgUrl', function ($location) {
     return function (text) {
-      return text.toLowerCase().replace(' ', '_') + '.png';
+      return '/img/'+text.toLowerCase().replace(' ', '_') + '.png';
     };
   });

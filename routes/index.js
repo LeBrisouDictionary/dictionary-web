@@ -9,7 +9,17 @@ module.exports = [{
       }
     }
   },
-
+  {
+    path: "/img/{path*}",
+    method: "GET",
+    handler: {
+      directory: {
+        path: process.env.dictionary_web_base_dir + "/public/assets/img",
+        listing: false,
+        index: false
+      }
+    }
+  },
   {
     path: "/js/{path*}",
     method: "GET",
