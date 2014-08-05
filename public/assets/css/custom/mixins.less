@@ -236,3 +236,28 @@
     cursor: pointer;
     &:hover{.apply-color(@main-dark, @accent-color);}
 }
+
+.is-details(@details-color: @main-white){
+    .apply-color(@details-color);
+
+    .details-label{
+        .font-ratio(1.2);
+        .make-xs-column(12, @grid-gutter-width);
+    }
+    .details-value{
+        font-style: italic;
+        &.def-value{min-height: @grid-gutter-width*1.5;}
+        &.country-value{.font-ratio(1.2);}
+    }
+
+    .example-container{
+        .apply-color(@main-dark, @details-color);
+        .details-value{}
+    }
+    .show-examples{
+        .make-xs-column(12, 0);
+        .is-trigger();
+        border-bottom: 1px solid @details-color;
+    }
+}
+
