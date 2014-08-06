@@ -1,20 +1,22 @@
 angular.module('LeBrisouBackend.directives', [])
-	.directive('uiTree', ['$compile', function($compile){
-			var i = 0;   
+	.directive('addDefinition', ['$compile', function($compile){
+			var definition_id = 1;
+			var definition_example_id = 1;
 			return {			
 				restrict: 'A',	
-				templateUrl: '/directives/definition_example.html',
+				templateUrl: '/directives/definition.html',
 				require: '?ngModel',
 				scope: true,
 				controller: function ($scope, $element) {
-					$scope.add = function(){
+					$scope.addDefinition = function(){
 						var new_element = $element.clone();
-						new_element.attr('id', 'def-ex-'+ (++i));
 						var el =  $compile(new_element)( $scope );				
   					$element.parent().append( el );	
-					}
+					};
 				},
 				link: function($scope, $element, attrs, controller){
+					$scope.definition_id = definition_id++;
+					$scope.definition_example_id = definition_example_id++;
 					var def, ex = null;
 					$scope.def_ex['def_ex'] = {};
 					
@@ -31,5 +33,28 @@ angular.module('LeBrisouBackend.directives', [])
               $scope.def_ex['def_ex'][index] =  { 'definition': def, 'example': newValue };
           });
 				}
-			} 
+			};
+	}])
+	.directive('addExample', ['$compile', function($compile){
+			var example_id = 1;
+			return {			
+				restrict: 'A',	
+				templateUrl: '/directives/example.html',
+				require: '?ngModel',
+				scope: true,
+				controller: function ($scope, $element) {
+					$scope.addExample = function(){
+  					var new_element = $element.clone();
+  					var el =  $compile(new_element)( $scope );				
+    				$element.parent().append( el );	
+					};
+				},
+				link: function($scope, $element, attrs, controller){
+					
+					$scope.example_id = example_id++;
+					
+					
+				}
+			};
 	}]);
+
