@@ -1,16 +1,12 @@
 <html>
-  <head>
 
+  <head>
     <title>LeBrisou - Admin</title>
   
     <link href="/css/main.less" type="text/less" rel="stylesheet"/>
 
     <script type="text/javascript">
-<<<<<<< HEAD
       var less = {}; less.env = 'development';
-=======
-        var less = {}; less.env = 'development';
->>>>>>> add.html
     </script>
 
     <script type="text/JavaScript" src="/js/vendor/angular/angular.min.js"></script>
@@ -18,13 +14,13 @@
     <script type="text/JavaScript" src="/js/vendor/d3/d3.js"></script>
     <script type="text/javascript" src="/js/vendor/less/less-1.6.1.min.js" ></script>
 
-    <script type="text/JavaScript" src="/js/app.js"></script>
     <script type="text/JavaScript" src="/js/config/config.js"></script>
     <script type="text/JavaScript" src="/js/controllers/mainCtrl.js"></script>
     <script type="text/JavaScript" src="/js/filters/index.js"></script>
-    <script type="text/JavaScript" src="/js/directives/addDefinition.js"></script>
-    
-  
+
+    <script type="text/JavaScript" src="/js/directives/index.js"></script>
+
+    <script type="text/JavaScript" src="/js/app.js"></script>
   </head>
 
   <body ng-app="LeBrisouBackend">
@@ -92,7 +88,6 @@
               </div>
 
             </div>
-
           </div>
 
 
@@ -109,37 +104,19 @@
 
           <!-- SYNONYMS -->
           <div class="ng-hide details-container" ng-show="show_word_details" ng-if="entry.synonyms.length">
-            <div ng-init="type = 'synonyms'" ng-include="'directives/syn-ant-rel.html'"></div>
+            <div ng-init="type = 'synonyms'; _type = entry.synonyms;" ng-include="'directives/syn-ant-rel.html'"></div>
           </div>
 
 
           <!-- ANTONYMS -->
           <div class="ng-hide details-container" ng-show="show_word_details" ng-if="entry.antonyms.length">
-            <div ng-init="type = 'antonyms'; values = 'entry.antonyms'" ng-include="'directives/syn-ant-rel.html'"></div>
+            <div ng-init="type = 'antonyms'; _type = entry.antonyms" ng-include="'directives/syn-ant-rel.html'"></div>
           </div>
 
 
           <!-- RELATIVES -->
           <div class="ng-hide details-container" ng-show="show_word_details" ng-if="entry.relatives.length">
-            <div class="details-label">Relatives</div>
-
-            <div class="labels-gr">
-              <div class="label">Id</div>
-              <div class="label">Lema</div>
-              <div class="label">Pos</div>
-              <div class="label">Gerund</div>
-              <div class="label">Participle</div>
-              <div class="label">Language</div>
-            </div>
-            
-            <div class="details-wrapper" ng-repeat="relative in entry.relatives">
-              <div class="details-value w-value">{{relative.id}}</div>
-              <div class="details-value w-value">{{relative.lema}}</div>
-              <div class="details-value w-value">{{relative.pos}}</div>
-              <div class="details-value w-value">{{relative.gerund}}</div>
-              <div class="details-value w-value">{{relative.participle}}</div>
-              <div class="details-value w-value">{{relative.language}}</div>
-            </div>
+            <div ng-init="type = 'relatives'; _type = entry.relatives" ng-include="'directives/syn-ant-rel.html'"></div>
           </div>
 
 
