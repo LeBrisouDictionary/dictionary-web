@@ -58,16 +58,6 @@
 
       <div ng-if="entries">
 
-<!--         <div class="labels-gr">
-          <div class="label">Id</div>
-          <div class="label">Lema</div>
-          <div class="label">Pos</div>
-          <div class="label">Gerund</div>
-          <div class="label">Participle</div>
-          <div class="label">Language</div>
-        </div> -->
-
-
         <div class="word" ng-repeat="entry in entries">
 
           <div class="main-value-cont" id="word_{{entry.id}}">
@@ -115,49 +105,13 @@
 
           <!-- SYNONYMS -->
           <div class="ng-hide details-container" ng-show="show_word_details" ng-if="entry.synonyms.length">
-            <div class="details-label">Synonyms</div>
-
-            <div class="labels-gr">
-              <div class="label">Id</div>
-              <div class="label">Lema</div>
-              <div class="label">Pos</div>
-              <div class="label">Gerund</div>
-              <div class="label">Participle</div>
-              <div class="label">Language</div>
-            </div>
-            
-            <div class="details-wrapper" ng-repeat="synonym in entry.synonyms">
-              <div class="details-value w-value">{{synonym.id}}</div>
-              <div class="details-value w-value">{{synonym.lema}}</div>
-              <div class="details-value w-value">{{synonym.pos}}</div>
-              <div class="details-value w-value">{{synonym.gerund}}</div>
-              <div class="details-value w-value">{{synonym.participle}}</div>
-              <div class="details-value w-value">{{synonym.language}}</div>
-            </div>
+            <div ng-init="type = 'synonyms'" ng-include="'directives/syn-ant-rel.html'"></div>
           </div>
 
 
           <!-- ANTONYMS -->
           <div class="ng-hide details-container" ng-show="show_word_details" ng-if="entry.antonyms.length">
-            <div class="details-label">Antonyms</div>
-
-            <div class="labels-gr">
-              <div class="label">Id</div>
-              <div class="label">Lema</div>
-              <div class="label">Pos</div>
-              <div class="label">Gerund</div>
-              <div class="label">Participle</div>
-              <div class="label">Language</div>
-            </div>
-            
-            <div class="details-wrapper" ng-repeat="antonym in entry.antonyms">
-              <div class="details-value w-value">{{antonym.id}}</div>
-              <div class="details-value w-value">{{antonym.lema}}</div>
-              <div class="details-value w-value">{{antonym.pos}}</div>
-              <div class="details-value w-value">{{antonym.gerund}}</div>
-              <div class="details-value w-value">{{antonym.participle}}</div>
-              <div class="details-value w-value">{{antonym.language}}</div>
-            </div>
+            <div ng-init="type = 'antonyms'; values = 'entry.antonyms'" ng-include="'directives/syn-ant-rel.html'"></div>
           </div>
 
 
