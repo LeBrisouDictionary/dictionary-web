@@ -18,10 +18,11 @@
     <script type="text/JavaScript" src="/js/config/config.js"></script>
     <script type="text/JavaScript" src="/js/controllers/mainCtrl.js"></script>
     <script type="text/JavaScript" src="/js/filters/index.js"></script>
-    <script type="text/JavaScript" src="/js/directives/addDefinition.js"></script>
+    <script type="text/JavaScript" src="/js/directives/index.js"></script>
     
   
   </head>
+
   <body ng-app="LeBrisouBackend">
 
     <nav role="navigation" class="navbar navbar-default ">
@@ -57,27 +58,27 @@
 
       <div ng-if="entries">
 
-        <div class="labels-gr">
+<!--         <div class="labels-gr">
           <div class="label">Id</div>
           <div class="label">Lema</div>
           <div class="label">Pos</div>
           <div class="label">Gerund</div>
           <div class="label">Participle</div>
           <div class="label">Language</div>
-        </div>
+        </div> -->
 
 
         <div class="word" ng-repeat="entry in entries">
 
           <div class="main-value-cont" id="word_{{entry.id}}">
-            <div class="show-details" ng-click="show_word_details = !show_word_details">details</div>
+            <div class="show-details" ng-click="show_word_details = !show_word_details">></div>
 
-            <div class="main-value">{{entry.id}}</div>
-            <div class="main-value">{{entry.lema}}</div>
-            <div class="main-value">{{entry.pos}}</div>
-            <div class="main-value">{{entry.gerund}}</div>
-            <div class="main-value">{{entry.participle}}</div>
-            <div class="main-value" id="{{entry.languageId}}">{{entry.language.language}}</div>
+            <div class="main-value"><span class="label">Id</span> <br> {{entry.id}}</div>
+            <div class="main-value"><span class="label">Lema</span> <br> {{entry.lema}}</div>
+            <div class="main-value"><span class="label">Pos</span> <br> {{entry.pos}}</div>
+            <div class="main-value"><span class="label">Gerund</span> <br> {{entry.gerund}}</div>
+            <div class="main-value"><span class="label">Participle</span> <br> {{entry.participle}}</div>
+            <div class="main-value"><span class="label">Language</span> <br> {{entry.language.language}}</div>
 
             <div class="delete-word" ng-click="remove()">x</div>
           </div>

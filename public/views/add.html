@@ -1,11 +1,14 @@
 <html>
+
   <head>
+
     <title>LeBrisou - Admin</title>
   
     <link href="/css/main.less" type="text/less" rel="stylesheet"/>
 
     <script type="text/javascript">
         var less = {}; less.env = 'development';
+
     </script>
 
     <script type="text/JavaScript" src="/js/vendor/angular/angular.min.js"></script>
@@ -20,7 +23,9 @@
     <script type="text/JavaScript" src="/js/directives/index.js"></script>
     
     <script type="text/JavaScript" src="/js/app.js"></script>
+
   </head>
+
   <body ng-app="LeBrisouBackend">
     
     <nav role="navigation" class="navbar navbar-default ">
@@ -36,13 +41,16 @@
       <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
         <div class="container">
           <ul class="nav navbar-nav">
-            <li><a href="/" class="navbar-brand">View &amp; Delete</a></li>
-            <li class="active"><a href="/add.html" class="navbar-brand">Add</a></li>
+
+            <li class="active"><a href="/" class="navbar-brand">View &amp; Delete</a></li>
+            <li><a href="/add.html" class="navbar-brand">Add</a></li>
+
             <li><a href="/search.html" class="navbar-brand">Search</a></li>
           </ul>
         </div>
       </div>
     </nav>
+
     <div id="content" class="container" ng-controller="MainCtrl">
       <form action="/add" method="post">
         <div class="col-md-6" >
