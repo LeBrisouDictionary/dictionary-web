@@ -1,24 +1,27 @@
 <html>
-    <head>
-    <link rel="stylesheet" href="/css/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/vendor/bootstrap/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/vendor/bootstrap/bootstrap.icon-large.min.css">
+  <head>
+    <title>LeBrisou - Admin</title>
+  
+    <link href="/css/main.less" type="text/less" rel="stylesheet"/>
+
+    <script type="text/javascript">
+        var less = {}; less.env = 'development';
+    </script>
 
     <script type="text/JavaScript" src="/js/vendor/angular/angular.min.js"></script>
     <script type="text/JavaScript" src="/js/vendor/angular/angular-route.min.js"></script>
+    <script type="text/JavaScript" src="/js/vendor/d3/d3.js"></script>
+    <script type="text/javascript" src="/js/vendor/less/less-1.6.1.min.js" ></script>
+
     
-    <script type="text/JavaScript" src="/js/controllers/add.js"></script>
     <script type="text/JavaScript" src="/js/config/config.js"></script>
-
-    <script type="text/JavaScript" src="/js/directives/add-def-ex.js"></script>
+    <script type="text/JavaScript" src="/js/controllers/mainCtrl.js"></script>
+    <script type="text/JavaScript" src="/js/filters/index.js"></script>
+    <script type="text/JavaScript" src="/js/directives/index.js"></script>
+    
     <script type="text/JavaScript" src="/js/app.js"></script>
-
   </head>
   <body ng-app="LeBrisouBackend">
-    
-    
-    <title>LeBrisou - Admin</title>
     
     <nav role="navigation" class="navbar navbar-default ">
       <div class="container-fluid">
@@ -31,23 +34,25 @@
         </div>
       </div>
       <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="/" class="navbar-brand">View &amp; Delete</a></li>
-          <li class="active"><a href="/add.html" class="navbar-brand">Add</a></li>
-          <li><a href="/search.html" class="navbar-brand">Search</a></li>
-        </ul>
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <li><a href="/" class="navbar-brand">View &amp; Delete</a></li>
+            <li class="active"><a href="/add.html" class="navbar-brand">Add</a></li>
+            <li><a href="/search.html" class="navbar-brand">Search</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
-    <div id="content">
+    <div id="content" class="container" ng-controller="MainCtrl">
       <form action="/add" method="post">
-        <div class="col-md-6" ng-controller="MainCtrl">
+        <div class="col-md-6" >
           <div class="form-group">
             <input name="lema" placeholder="lema" class="form-control">
             <input name="pos" placeholder="pos" class="form-control top20">
             <input name="pos" placeholder="pos" class="form-control top20">
-            <div class="top20" ng-top ui-tree>
-              
-            </div>
+            <div class="top20" ng-top add-definition></div>
+            <button type="button" ng-click="addExample()" class="btn btn-default add-def-ex col-md-3">Add Example</button>
+            <button type="button" ng-click="addDefinition()" class="btn btn-default add-def-ex col-md-3">Add Eefinition</button>
           </div>
           <button type="submit" class="btn btn-default top20">Insert</button>
         </div>
