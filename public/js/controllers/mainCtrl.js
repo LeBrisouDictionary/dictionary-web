@@ -11,9 +11,14 @@ angular.module('LeBrisouBackend.controllers', ['LeBrisouBackend.config'])
 
   	$scope.query = function(){
       var url = apiUrl + '/words';
+<<<<<<< HEAD
 
   		$http.get(url)
       .success(function(data) {
+=======
+  		$http.get(url).
+      success(function(data) {
+>>>>>>> 044ab238ab510f02548f1c90fd689ac95df8c1e3
         if(data && data.result){
           console.log(data.result);
           $scope.entries = data.result;
