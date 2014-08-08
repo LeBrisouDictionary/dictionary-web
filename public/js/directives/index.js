@@ -143,8 +143,8 @@ app.directive('backendCountries', ['$compile', function($compile){
 						'].country = word.countries['+$scope.countryId+
 						'].country || backendCountries[0]" ng-model="word.countries['+$scope.countryId+
 						'].country" ng-options="countryObj for countryObj in backendCountries"></select>'+
-						'<input ng-model="word.countries['+$scope.countryId+
-						'].frequency" placeholder="frequency" class="form-control"></input>';
+						'<input type="number" min="0" max="100" ng-model="word.countries['+$scope.countryId+
+						'].frequency" placeholder="10" class="form-control" integer></input>';
 					var el =  $compile(new_element)( $scope );
 					angular.element(document.getElementById('countriesSpace')).append(el);
 					
