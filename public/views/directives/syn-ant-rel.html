@@ -1,0 +1,9 @@
+<div class="details-label">{{type}}</div>
+    <div class="details-wrapper sar-wrapper" ng-repeat="value in _type">
+    <div class="details-value w-value" ng-if="value.id"><span class="label">Id</span> <br> {{value.id}}</div>
+    <div class="details-value w-value" ng-if="value.lema"><span class="label">Lema</span> <br> {{value.lema}}</div>
+    <div class="details-value w-value" ng-if="value.pos"><span class="label">Pos</span> <br> {{value.pos}}</div>
+    <div class="details-value w-value" ng-if="value.gerund"><span class="label">Gerund</span> <br> {{value.gerund}}</div>
+    <div class="details-value w-value" ng-if="value.participle"><span class="label">Participle</span> <br> {{value.participle}}</div>
+    <div class="details-value w-value" ng-if="value.language.language"><span class="label">Language</span> <br> {{value.language.language}}</div>
+</div>

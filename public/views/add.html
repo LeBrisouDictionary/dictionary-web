@@ -14,9 +14,11 @@
     <script type="text/javascript" src="/js/vendor/less/less-1.6.1.min.js" ></script>
     
     <script type="text/JavaScript" src="/js/config/config.js"></script>
-    <script type="text/JavaScript" src="/js/controllers/mainCtrl.js"></script>
+    <script type="text/JavaScript" src="/js/controllers/index.js"></script>
     <script type="text/JavaScript" src="/js/filters/index.js"></script>
     <script type="text/JavaScript" src="/js/directives/index.js"></script>
+    <script type="text/JavaScript" src="/js/services/index.js"></script>
+
     
     <script type="text/JavaScript" src="/js/app.js"></script>
   </head>
@@ -44,14 +46,52 @@
       </div>
     </nav>
 
-    <div id="content" class="container" ng-controller="MainCtrl">
+    <div id="content" class="container" ng-controller="addCtrl">
       <form name='myForm'>
           <div class="form-group" >
-            <input ng-model="word.lema" name="lema" placeholder="lema" class="form-control">
-            <input ng-model="word.pos" name="pos" placeholder="pos" class="form-control top20">
-            <input ng-model="word.gerund" name="gerund" placeholder="gerund" class="form-control top20">
-            <input ng-model="word.participle" name="participle" placeholder="participle" class="form-control top20">
-            <definition-example ng-model="word.definitions" class="form-group top20" ng-top/>
+            <input ng-model="word.lema"  placeholder="lema" class="form-control">
+            <input ng-model="word.pos" placeholder="pos" class="form-control top20">
+            <input ng-model="word.gerund" placeholder="gerund" class="form-control top20">
+            <input ng-model="word.participle" placeholder="participle" class="form-control top20">
+            
+            <div ng-controller="languagesCtrl" ng-init="getLanguages()">
+              Language : <select ng-if="backendLanguages" ng-init="word.language = word.language || backendLanguages[0]"
+                ng-model="word.language" ng-options="language for language in backendLanguages"></select>
+            </div>
+            
+            Activate : <input type="checkbox" ng-model="word.register" checked>
+            
+            <div>
+              Definitions :
+              <backend-definition-example ng-model="word.definitions" class="form-group top20" ng-top></backend-definition-example>
+            </div>
+            
+            <div>
+              Synonyms :
+              <backend-synonyms ng-model="word.synonyms" class="form-group"></backend-synonyms>
+            </div>
+            
+            <div>
+              Antonyms :
+              <backend-antonyms ng-model="word.antonyms" class="form-group"></backend-antonyms>
+            </div>
+            
+            <div>
+              Relatives :
+              <backend-relatives ng-model="word.relatives" class="form-group"></backend-relatives>
+            </div>
+            
+            <div ng-controller="countriesCtrl" ng-init="getCountries()">
+              Countries :
+              <backend-countries ng-if="backendCountries" ng-model="word.countries" class="form-group"></backend-countries>
+            </div>
+            
+            <div>
+              Hyperlinks :
+              <backend-hyperlinks ng-model="word.hyperlinks" class="form-group"></backend-hyperlinks>
+            </div>
+            
+            
             
           </div>
           <button type="submit" ng-click="insert();" class="btn btn-default">Insert</button>
