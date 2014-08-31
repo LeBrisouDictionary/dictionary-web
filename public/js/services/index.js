@@ -42,10 +42,23 @@ app.service('backendWords', [ '$http', 'apiUrl',
   	this.get =  {
   	  async : function(){
   	    var url = apiUrl + '/words';
-  	    return $http.get(url)
+  	    return $http({ method: 'GET', url: url, cache: true})
           .then(function(response) {
             if(response.data && response.data.result){
               return response.data.result;
+            }
+          });
+  	  }
+    };
+    
+    this.put =  {
+  	  async : function(data){
+  	    var url = apiUrl;
+  	    return $http({ method: 'PUT', url: url, data: data, timeout: 5000 })
+          .then(function(response) {
+            console.log(response);
+            if(response.data && response.data.result){
+              return response.data;
             }
           });
   	  }

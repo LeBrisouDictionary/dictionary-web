@@ -9,56 +9,45 @@ app.controller('indexCtrl', [ '$scope', '$http', 'backendWords', function($scope
           $scope.entries = data;
         });
   	};
-
-
 }]);
 
 
 
-app.controller('addCtrl', [ '$scope', '$http', 'backendLanguages', function($scope, $http, backendLanguages) {
+app.controller('addCtrl', ['$scope', '$http', 'backendWords', function($scope, $http, backendWords){
   	$http.defaults.useXDomain = true;
   	
     $scope.word = {
       countries: [],
       definitions : [],
-      synonyms: [],
-      antonyms: [],
-      relatives: [],
-      hyperlinks: []
+      register: true
     };
     
     $scope.definitionId = 0;
-  	$scope.word.definitions[$scope.definitionId] =  {
-			examples: [],
-		};
+  	$scope.word.definitions[$scope.definitionId] =  {};
 		
 		$scope.exampleIds = {};
 		$scope.exampleIds[$scope.definitionId] = 0;
 		
-		$scope.synonymId = 0;
-		$scope.word.synonyms[$scope.synonymId] = {};
-		
-		$scope.relativeId = 0;
-		$scope.word.relatives[$scope.relativeId] = {};
-		
-		$scope.antonymId = 0;
-		$scope.word.antonyms[$scope.antonymId] = {};
-		
-		$scope.hyperlinkId = 0;
-		
 		$scope.countryId = 0;
 		$scope.word.countries[$scope.countryId] = {};
-		
-		$scope.getlanguages = function(){
-		  console.log('getLanguages');
-      backendLanguages.get.async()
-        .then(function(data){
-          $scope.backendLanguages = data;
-        });
-  	};
+    	
+    $scope.synonymId = 0;
+    $scope.relativeId = 0;
+    $scope.antonymId = 0;
+    $scope.hyperlinkId = 0;
+
   	
     $scope.insert = function() {
-  		alert(JSON.stringify($scope.word));
+  		backendWords.put.async($scope.word)
+  		  .then(function(data){
+  		    document.getElementById('backendStatus').innerHTML = "Word Inserted !";
+  		  })
+  		  .catch(function(err){
+  		    console.log('addCtrl:41', err);
+  		    document.getElementById('backendStatus').innerHTML = (err.data.statusCode || err.status) + ' ' +
+  		      err.data.source + ' ' +
+  		      err.data.message;
+  		  });
   	};
 
   	

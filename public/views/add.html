@@ -47,19 +47,20 @@
     </nav>
 
     <div id="content" class="container" ng-controller="addCtrl">
-      <form name='myForm'>
-          <div class="form-group" >
-            <input ng-model="word.lema"  placeholder="lema" class="form-control" required>
-            <input ng-model="word.pos" placeholder="pos" class="form-control top20">
-            <input ng-model="word.gerund" placeholder="gerund" class="form-control top20">
-            <input ng-model="word.participle" placeholder="participle" class="form-control top20">
+          <div  class="form-group">
+            <div id="backendStatus"></div>
+            
+            <input ng-model="word.lema"  placeholder="lema" class="form-control" required lowercase/>
+            <input ng-model="word.pos" placeholder="pos" class="form-control top20" required lowercase/>
+            <input ng-model="word.gerund" placeholder="gerund" class="form-control top20" lowercase/>
+            <input ng-model="word.participle" placeholder="participle" class="form-control top20" lowercase/>
             
             <div ng-controller="languagesCtrl" ng-init="getLanguages()">
               Language : <select ng-if="backendLanguages" ng-init="word.language = word.language || backendLanguages[0]"
                 ng-model="word.language" ng-options="language for language in backendLanguages"></select>
             </div>
             
-            Activate : <input type="checkbox" ng-model="word.register" checked>
+            Activate : <input type="checkbox" ng-model="word.register">
             
             <div>
               Definitions :
@@ -95,7 +96,6 @@
             
           </div>
           <button type="submit" ng-click="insert();" class="btn btn-default">Insert</button>
-      </form>
       Word: <pre>{{word | json}}</pre>
     </div>
 
