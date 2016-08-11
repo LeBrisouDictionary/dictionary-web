@@ -98,7 +98,7 @@
 
             <div class="details-wrapper details-col c{{entry.countries.length}}" ng-repeat="country in entry.countries">
               <div class="details-value country-value">{{country.country}}</div>
-              <img src="{{country.country | toImgUrl }}" class="country-flag" alt="{{country.country}} flag" />
+              <img ng-src="{{country.country | toImgUrl }}" class="country-flag" alt="{{country.country}} flag" />
             </div>
           </div>
 
